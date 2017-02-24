@@ -28,8 +28,9 @@ public class FileController {
   
 	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST, value = "/insertFile")
-    public @ResponseBody JSONObject insertPersona(@RequestBody JSONObject  json ) {
-		 
+    public  JSONObject insertPersona(@RequestBody JSONObject  json ) {
+		 	
+			System.out.println("json  "+json);
 			appContext=new AnnotationConfigApplicationContext(AppConfig.class);
 			JSONObject jsonObject=null;
 			 
@@ -84,7 +85,7 @@ public class FileController {
 	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(method = RequestMethod.POST, value = "generaURL")
-    public @ResponseBody JSONObject serviciogeneraURL(@RequestBody JSONObject  json ) { 
+    public  JSONObject serviciogeneraURL(@RequestBody JSONObject  json ) {
 		 
 			appContext=new AnnotationConfigApplicationContext(AppConfig.class);
 			JSONObject jsonObject=null;
@@ -94,7 +95,8 @@ public class FileController {
 			beanLoginI=(IOperaciones) appContext.getBean("coreConfigInterface");
 			try { 
 				
-				beanLogin.setResult(beanLoginI.generaURL(json.get("nodo").toString(),json.get("archivo").toString()));
+				beanLogin.setResult(beanLoginI.generaURL(
+						json.get("nodo").toString(),json.get("archivo").toString()));
 				
 				jsonObject=new JSONObject(); 
 				jsonObject.put("codigo","200");
